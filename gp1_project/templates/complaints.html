@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<form action "#" method = "post">
+    {% csrf_token %}
+<div class="form-group">
+    <h3> Hastalığınızla İlgili Şikayetinizi Ayrıntılı Olarak Anlatır Mısınız?<h3>
+    <label for="exampleFormControlTextarea1"></label>
+    <textarea class="form-control" placeholder="Şikayetinizi Giriniz..." id = "exampleFormControlTextarea1" rows="3" name = "complaint"></textarea>
+    <br>
+    <button type="submit" class="btn btn-primary mb-2"> Convert Complaint </button>
+</div>
+</form>
+
+{% if complaint != "" %}
+<h5>{{machine_translate}}<h5>
+{% else %}
+<h5>{{machine_translate_empty}}<h5>
+{% endif %}
+
+
+
+{% endblock body %}
+
