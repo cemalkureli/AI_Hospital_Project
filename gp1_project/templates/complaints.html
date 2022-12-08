@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+
 <form action "#" method = "post">
     {% csrf_token %}
 <div class="form-group">
@@ -12,12 +13,14 @@
 </div>
 </form>
 
-{% if complaint != "" %}
-<h5>{{machine_translate}}<h5>
-{% else %}
-<h5>{{machine_translate_empty}}<h5>
-{% endif %}
-
+<table>
+    <tr>
+        <th><h6>Category<h6></th>
+    </tr>
+    <tr>
+        <td><h7>{{machine_translate}}<h7></td>
+    <tr>
+</table> 
 
 
 {% endblock body %}
