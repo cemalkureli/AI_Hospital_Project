@@ -7,15 +7,15 @@
 <div class="form-group">
     <h4> Hastalığınızla İlgili Şikayetinizi Ayrıntılı Olarak Anlatır Mısınız ?<h4>
     <label for="exampleFormControlTextarea1"></label>
-    <textarea class="form-control" placeholder="Şikayetinizi Giriniz..." id = "exampleFormControlTextarea1" rows="3" name = "complaint"></textarea>
+    <textarea class="form-control" placeholder="Şikayetinizi Giriniz..." id = "exampleFormControlTextarea1" maxlength="2000" rows="3" name = "complaint"></textarea>
     <br>
-    <button type="submit" class="btn btn-primary mb-2"> Convert Complaint </button>
+    <button type="submit" class="btn btn-primary mb-2"> Şikayeti Dönüştür </button>
 </div>
 </form>
 
 <table>
     <tr>
-        <th><h6>Category<h6></th>
+        <th><h6>Kategori<h6></th>
     </tr>
     <tr>
         <td><h7>{{machine_translate}}<h7></td>
