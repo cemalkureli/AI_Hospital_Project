@@ -1,5 +1,6 @@
+{% load static %}
 <nav class="navbar navbar-dark bg-dark ">
-  <a class="navbar-brand" href="/home">
+  <a class="navbar-brand" href="{% url 'home' %}">
     <img src="../../static/logo_black.gif">
   </a>
   <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
@@ -32,22 +33,40 @@
               Şikayetler</a>
           </li>
         </button>
+        <button type="button" class="btn btn-dark btn-sm">
+          <li class="nav-item active">
+            <a href="#" class="nav-link" href="/about">
+              <img src="../../static/about.png">
+              İletişim</a>
+          </li>        
+        </button>
       </ul>
       <ul class="navbar-nav ml-auto">
-          <button type="button" class="btn btn-dark btn-sm">
-            <li class="nav-item active">
-              <a href="#" class="nav-link" href="/about">
-                <img src="../../static/appointment.png">
-                Randevu AL</a>
-            </li>
-          </button>
-          <button type="button" class="btn btn-dark btn-sm">
-            <li class="nav-item active">
-              <a href="#" class="nav-link" href="/about">
-                <img src="../../static/about.png">
-                İletişim</a>
-            </li>        
-          </button>
+        {% if request.user.is_authenticated %}
+        <button type="button" class="btn btn-dark btn-sm">
+          <li class="nav-item active">
+            <a href="#" class="nav-link" href="{% url 'appointment' %}">
+              <img src="../../static/appointment.png">
+              Randevu AL</a>
+          </li>
+        </button>
+        <button type="button" class="btn btn-outline-info">
+          <li class="nav-item active">
+           <a class="nav-link" href="{% url 'user:logout' %}">Çıkış Yap</a>
+          </li>
+        </button>
+        {% else %}
+        <button type="button" class="btn btn-outline-info">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'user:login' %}">Giriş Yap</a>
+          </li>
+        </button>
+        <button type="button" class="btn btn-outline-info">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'user:register' %}">Kayıt Ol</a>
+          </li>
+        </button>
+        {% endif %}
       </ul>
     </div>
   </nav>

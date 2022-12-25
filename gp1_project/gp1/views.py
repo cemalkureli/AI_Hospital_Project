@@ -1,4 +1,6 @@
 from django.shortcuts import render,HttpResponse
+from django.contrib.auth.decorators import login_required
+
 # from .models import Complaint
 
 # Create your views here.
@@ -15,6 +17,7 @@ def categories(request):
 def doctors(request):
     return render(request,"doctors.html")
 
+@login_required(login_url="user:login")
 def appointment(request):
     return render(request,"appointment.html")
 
