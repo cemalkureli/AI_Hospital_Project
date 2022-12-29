@@ -1,9 +1,25 @@
 from django.shortcuts import render,HttpResponse
 from django.contrib.auth.decorators import login_required
+import requests
+from bs4 import BeautifulSoup
 
 # from .models import Complaint
 
 # Create your views here.
+
+def show_article(request):
+    
+    url = request.GET.get('url')
+
+    response = requests.get(url)
+    html = response.text
+
+    soup = BeautifulSoup(html, 'html.parser')
+    article_content = soup.find('div', class_='article-content')
+
+    return render(request, 'article.html', {'article_content': article_content})
+
+
 
 def home(request):
     return render(request,"home.html")
