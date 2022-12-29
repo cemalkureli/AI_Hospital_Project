@@ -9,9 +9,8 @@ class Doctor(models.Model):
     phone=models.CharField(max_length=10)
     age=models.CharField(max_length=3)
     gender=models.CharField(max_length=10)
-    Department=models.CharField(max_length=20)
+    department=models.CharField(max_length=20)
     status=models.CharField(max_length=15)
-    salary=models.CharField(max_length=10)
     
     def __str__(self):
         return f'{self.user.first_name}'
