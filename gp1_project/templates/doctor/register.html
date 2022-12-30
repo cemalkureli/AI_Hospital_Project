@@ -1,0 +1,72 @@
+{% extends '../layout.html' %}
+{% load static %}
+{% block body %}
+{% load crispy_forms_tags %}
+
+<link rel="stylesheet" type="text/css" href="/static/css/register.css">
+
+<div class="wrapper">
+        <form class="form-right" action="" method="post">
+            <h2 class="text-uppercase" style= "text-align: center;">AI HOSPITAL Doctor Registration</h2>
+            <div class="logo">
+                <img src="{% static 'register.gif' %}" alt="">
+            </div>
+            <br>
+            {% csrf_token %}
+            <br>
+            <div style= "text-align: center;">
+                <div class="row" >
+                    <div class="col-sm-6 mb-3">
+                        {{ form.username|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        {{ form.password|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        {{ form.surname|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        {{ form.phone_number|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        {{ form.department|as_crispy_field }}
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        {{ form.degree|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.gender|as_crispy_field }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.address|as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-field" style= "text-align: center;">
+                <button type = "submit" class = "btn btn-info"> Sign in </button>
+            </div>
+            <br>
+            <div class="border-top pt-3" style= "text-align: center;">
+                <small class="text-muted ">
+                    Already have an account ? <a class="ml-2" href="{% url 'user:doctorlogin' %}">Sign In</a>
+                </small>
+            </div>
+        </form>	
+</div>
+
+{% endblock body %}

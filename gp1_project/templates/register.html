@@ -1,24 +1,59 @@
 {% extends 'layout.html' %}
-
+{% load static %}
 {% block body %}
 {% load crispy_forms_tags %}
-<div class="row">
-    <div class="col-md-5 offset-md-3">
-        <h4> Sign Up </h4>
-        <hr>
+
+<link rel="stylesheet" type="text/css" href="/static/css/register.css">
+
+<div class="wrapper">
+    <form class="form-right" action="" method="post">
+        <h2 class="text-uppercase" style= "text-align: center;">AI HOSPITAL User Registration</h2>
+        <div class="logo">
+            <img src="{% static 'register2.gif' %}" alt=""></img>
+        </div>
         <br>
-        <form action = "" method = "post">
-            {% csrf_token %} 
-            {{form|crispy}} 
-            <br>
+        {% csrf_token %}
+        <br>
+        <div style= "text-align: center;">
+            <div class="row" >
+                <div class="col-sm-6 mb-3">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="col-sm-6 mb-3">
+                    {{ form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    {{ form.password|as_crispy_field }}
+                </div>
+                <div class="col-sm-6 mb-3">
+                    {{ form.confirm_password|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 mb-3">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="col-sm-6 mb-3">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-field" style= "text-align: center;">
             <button type = "submit" class = "btn btn-info"> Sign in </button>
-        </form>
+        </div>
         <br>
-		<div class="border-top pt-3">
-            <small class="text-muted">
+        <div class="border-top pt-3" style= "text-align: center;">
+            <small class="text-muted ">
                 Already have an account ? <a class="ml-2" href="{% url 'user:login' %}">Sign In</a>
             </small>
         </div>
-    </div>
+    </form>	
 </div>
+
 {% endblock body %}
+
+
+
