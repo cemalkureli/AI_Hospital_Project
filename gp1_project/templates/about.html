@@ -1,5 +1,56 @@
 {% extends 'layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block body %}
+<div class="container">
+    <div class="row"> 
+        <div class="col-md-12">
+                <div class="about-logo">
+                    <h3 style = "color:red">Bizimle İletişime Geçin!</h3>
+                    <br>
+                    <p style = "font-size:15pt;"> Bu site, hasta şikayetlerini sınıflandırmak için eğitilmiş makine öğrenimi modelini kullanır ve bu sayede doktorların ve hastaların daha verimli ve etkili bir şekilde iletişim kurmasına ve doktorun kendi hastalarının sorunlarını daha hızlı bir şekilde ele almasına yardımcı olur.</p>                    
+                </div> 
+        </div>
+    </div>
+    <br><h5>Herhangi bir sorununuz varsa doğrudan bizimle iletişime geçin. Kısa süre içinde sizinle iletişime geçeceğiz.</h5><br><hr><br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="contact-form">                    
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row" >
+                        <div class="col-sm-6 mb-3">
+                             {{ form.name|as_crispy_field }}
+                             <br>
+                             {{ form.email|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            {{ form.surname|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" >
+                        <div class="col-sm-8 mb-3" >
+                                {{ form.message|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-8 mb-3">
+                            <button type = "submit" class = "btn btn-info"> Gönder </button>
+                        </div>
+                    </div>
+                        
+                </form>
+            </div>
+        </div>
+        {% include "google_map.html" %}
+    </div>
+</div>
+<br><br><br>
+<div class = "col-xs-12 col-sm-12 col-md-12" >
+    <div class = "border">
+    <h5>
+        <p style ="text-align: center; color:red; font-size:20pt;"> Öneri veya Destek Adresi</p> 
+    <h5>
+    <p style ="text-align: center; font-family: times, serif; font-size:20pt;">gp_project_deneme@hotmail.com</p>
+    </div>
+</div>
 
 {% endblock body %}

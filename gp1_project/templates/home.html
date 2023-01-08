@@ -1,8 +1,35 @@
 {% extends 'layout.html' %}
-
+{% load static %}
 {% block body %}
 
-<p><b> <h4>Anasayfa</h4></b> </p>
 <br><br><br><br><br><br>
+<!-- Slider -->
+<div id="main-slider" class="flexslider">
+    <ul class="slides">
+      <li>
+        <img src="{% static 'img/slides/1.jpg' %}" alt="" />
+        <div class="flex-caption container">
+            <h3>Caring for Health</h3> 
+            <p>Doloribus omnis minus temporibus perferendis ipsa</p>  
+        </div>
+      </li>
+      <li>
+        <img src="{% static 'img/slides/2.jpg' %}" alt="" />
+        <div class="flex-caption container">
+            <h3>Best Equipments</h3> 
+<p>Doloribus omnis minus temporibus perferendis ipsa</p>  					
+        </div>
+      </li>
+    </ul>
+  </div>
+  
 {% endblock body %}
+
+
+
+
+
+
+
+
 

@@ -1,7 +1,12 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 import requests
 from bs4 import BeautifulSoup
+from gp1.forms import ContactForm
+from django.core.mail import send_mail
+from gp1_project import settings
+from django.contrib import messages
+import datetime
 
 # from .models import Complaint
 
@@ -25,7 +30,34 @@ def home(request):
     return render(request,"home.html")
 
 def about(request):
-    return render(request,"about.html")
+    form = ContactForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+            name = form.cleaned_data['name']
+            surname = form.cleaned_data['surname']
+            full_name = f"İsim-Soyisim: {name} {surname}\n"
+            subject = f"{name} {surname} İsimli Hastanın Şikayeti"
+            from_email = form.cleaned_data['email']
+            from_email_str = f"Gönderen: {form.cleaned_data['email']}"
+            to_email = settings.EMAIL_HOST_USER
+            message = f"\nŞikayet: {form.cleaned_data['message']}\n"
+            message_send = "Şikayetiniz Başarıyla Alınmıştır. En yakın sürede iletişime geçilecektir. İyi günler dileriz.\n\nAlınan Şikayetin İçeriği:\n"
+            time = datetime.datetime.now()
+            time_print = f"Tarih: {str(time.day)}/{str(time.month)}/{str(time.year)}\t\tSaat: {str(time.hour)}:{str(time.minute)}:{str(time.second)}"
+
+            body = {
+                'message_send': message_send,
+                'name-surname': full_name,
+                'email_str' : from_email_str,
+                'message': message,
+                'time': time_print,
+               }
+            all_message = '\n'.join(body.values())
+
+            send_mail(subject,all_message,to_email,[from_email])
+            messages.success(request, "Mesajınız gönderilmiştir. En yakın sürede iletişime geçilecektir. İyi günler dileriz.")
+            return redirect('about')
+
+    return render(request, 'about.html', {'form': form})
 
 def categories(request):
     return render(request,"categories.html")
