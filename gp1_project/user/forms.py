@@ -1,14 +1,15 @@
 from django import forms 
 from django.contrib.auth.models import User
 from user.models import RegisterDoctor,DoctorLogin
+from phonenumber_field.formfields import PhoneNumberField
 
 class RegisterForm(forms.Form):
 
-    username =  forms.CharField(max_length=20, required=True, label= "Username", widget=forms.TextInput(attrs={'placeholder': 'Username','style':"text-align: center;"})) 
-    password = forms.CharField(max_length=20, required=True, label= "Password", widget=forms.PasswordInput(attrs={'placeholder': 'Password','style':"text-align: center;"}))  
-    confirm_password =  forms.CharField(max_length=20, required=True, label= "Password(Again)", widget=forms.PasswordInput(attrs={'placeholder': 'Password(Again)','style':"text-align: center;"}))
-    first_name = forms.CharField(max_length = 20, required=True, label='First Name',widget=forms.TextInput(attrs={'placeholder': 'Name','style':"text-align: center;"}))
-    last_name = forms.CharField(max_length = 20, required=True, label='Last Name',widget=forms.TextInput(attrs={'placeholder': 'Surname','style':"text-align: center;"}))
+    username =  forms.CharField(max_length=20, required=True, label= "Kullanıcı Adı", widget=forms.TextInput(attrs={'placeholder': 'Kullanıcı Adı','style':"text-align: center;"})) 
+    password = forms.CharField(max_length=20, required=True, label= "Şifre", widget=forms.PasswordInput(attrs={'placeholder': 'Şifre','style':"text-align: center;"}))  
+    confirm_password =  forms.CharField(max_length=20, required=True, label= "Şifre(Tekrar)", widget=forms.PasswordInput(attrs={'placeholder': 'Şifre(Tekrar)','style':"text-align: center;"}))
+    first_name = forms.CharField(max_length = 20, required=True, label='İsim',widget=forms.TextInput(attrs={'placeholder': 'İsim','style':"text-align: center;"}))
+    last_name = forms.CharField(max_length = 20, required=True, label='Soyisim',widget=forms.TextInput(attrs={'placeholder': 'Soyisim','style':"text-align: center;"}))
     email =  forms.EmailField(max_length = 50, required=True, label='E-mail',widget=forms.TextInput(attrs={'placeholder': 'E-mail','style':"text-align: center;"}))
     
     
@@ -38,8 +39,8 @@ class RegisterForm(forms.Form):
         return value
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=20, required=False, label = "Username", widget=forms.TextInput(attrs={'placeholder': 'Username', 'style':"text-align: center;"} ))
-    password = forms.CharField(max_length=20, required=False, label = "Password", widget=forms.PasswordInput(attrs={'placeholder': 'Password','style':"text-align: center;"}))
+    username = forms.CharField(max_length=20, required=False, label = "Kullanıcı Adı", widget=forms.TextInput(attrs={'placeholder': 'Kullanıcı Adı', 'style':"text-align: center;"} ))
+    password = forms.CharField(max_length=20, required=False, label = "Şifre", widget=forms.PasswordInput(attrs={'placeholder': 'Şifre','style':"text-align: center;"}))
 
 
 
@@ -47,11 +48,17 @@ class LoginForm(forms.Form):
 class DoctorRegisterForm(forms.ModelForm):
     class Meta:
         model = RegisterDoctor
-        fields = ['username', 'password', 'email', 'name', 'surname', 'phone_number', 'gender','department','degree','address']
-    
+        fields = ['name','surname','email','password','phone_number','address', 'gender','department','degree','birth_date']
+        widgets = {
+            'password': forms.PasswordInput(),
+            'birth_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
+        }
         
 
 class DoctorLoginForm(forms.ModelForm):
     class Meta:
         model = DoctorLogin
         fields = ['email', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }

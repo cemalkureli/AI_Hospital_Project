@@ -10,16 +10,16 @@
       <img src="{% static 'login.gif' %}" alt="">
     </div>
     <div class="text-center mt-4 name">
-      AI HOSPITAL Doctor Login
+      AI HOSPITAL Doktor Giriş Ekranı
     </div>
     <form class="p-3 mt-3" method="post" action="{% url 'user:doctorlogin' %}" style= "text-align: center;">
       {% csrf_token %}
       {{ form|crispy }}
-      <button class="btn mt-3" type="submit">Login</button>
+      <button class="btn mt-3" type="submit">Giriş</button>
     </form>
     <hr>
     <div class="text-center fs-6">
-        Need an account ? <a class="ml-2" href="{% url 'user:doctorregister' %}">Sign Up</a>
+        Hesaba mı ihtiyacınız var ? <a class="ml-2" href="{% url 'user:doctorregister' %}">Kayıt Ol</a>
     </div>
   </div>
 

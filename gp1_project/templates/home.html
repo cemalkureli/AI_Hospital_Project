@@ -1,27 +1,82 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block body %}
 
-<br><br><br><br><br><br>
-<!-- Slider -->
-<div id="main-slider" class="flexslider">
-    <ul class="slides">
-      <li>
-        <img src="{% static 'img/slides/1.jpg' %}" alt="" />
-        <div class="flex-caption container">
-            <h3>Caring for Health</h3> 
-            <p>Doloribus omnis minus temporibus perferendis ipsa</p>  
+{% block body %}
+<h3 style= "text-align: center; color:red;">AI HOSPITAL DOKTOR-HASTA ÖZEL MUAYENEHANE SİSTEMİ<h3>
+  <hr>
+<br>
+<div class="container-xxl" style= "text-align: center;">
+  <br><br><br>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header" style="background-color:powderblue;">
+          <h3>Kullanıcı Girişi</h3>
+          <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#userLoginCollapse" aria-expanded="false" aria-controls="userLoginCollapse">
+            Göster/Gizle
+          </button>
         </div>
-      </li>
-      <li>
-        <img src="{% static 'img/slides/2.jpg' %}" alt="" />
-        <div class="flex-caption container">
-            <h3>Best Equipments</h3> 
-<p>Doloribus omnis minus temporibus perferendis ipsa</p>  					
+        <div class="collapse" id="userLoginCollapse" style ="background-color:#343a40!important;">
+          <div class="card-body">
+            <a href="{% url 'user:login' %}">Kullanıcı Giriş Sayfasına Git</a>
+            <br>
+          </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"style="background-color:powderblue;">
+          <h3>Doktor Girişi</h3>
+          <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#doctorLoginCollapse" aria-expanded="false" aria-controls="doctorLoginCollapse">
+            Göster/Gizle
+          </button>
+        </div>
+        <div class="collapse" id="doctorLoginCollapse" style ="background-color:#343a40!important;">
+          <div class="card-body">
+            <a href="{% url 'user:doctorlogin' %}">Doktor Giriş Sayfasına Git</a>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"style="background-color:powderblue;">
+          <h3>Kullanıcı Kayıt</h3>
+          <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#userRegisterCollapse" aria-expanded="false" aria-controls="userRegisterCollapse">
+            Göster/Gizle
+          </button>
+        </div>
+        <div class="collapse" id="userRegisterCollapse" style ="background-color:#343a40!important;">
+          <div class="card-body">
+            <a href="{% url 'user:register' %}">Kullanıcı Kayıt Sayfasına Git</a>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"style="background-color:powderblue;">
+          <h3>Doktor Kayıt</h3>
+          <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#doctorRegisterCollapse" aria-expanded="false" aria-controls="doctorRegisterCollapse">
+            Göster/Gizle
+          </button>
+        </div>
+        <div class="collapse" id="doctorRegisterCollapse" style ="background-color:#343a40!important;">
+          <div class="card-body">
+            <a href="{% url 'user:doctorregister' %}">Doktor Kayıt Sayfasına Git</a>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br><br>
   
 {% endblock body %}
 

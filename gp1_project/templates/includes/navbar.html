@@ -21,7 +21,7 @@
         </button>
         <button type="button" class="btn btn-dark btn-sm">
           <li class="nav-item active">
-            <a href="#" class="nav-link" href="/doctors">
+            <a href="{% url 'doctors' %}" class="nav-link" href="/doctors">
               <img src="../../static/doctor.png">
               Doktorlar</a>
           </li>
@@ -32,6 +32,14 @@
               <img src="../../static/complaint.png">
               Şikayetler</a>
           </li>
+        </button>
+        <button type="button" class="btn btn-dark btn-sm">
+          <li class="nav-item active">
+            <a class="nav-link" href="/about">
+              <img src="../../static/info.png">
+              Bize Ulaşın</a>
+          </li>
+        </button>
       </ul>
       <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}

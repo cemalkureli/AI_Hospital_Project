@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'gp1',
     'user',
     'crispy_forms',
+    'phonenumber_field',
 
 ]
 

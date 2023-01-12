@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User 
 from django.contrib.auth import authenticate,login,logout 
 from user.forms import DoctorRegisterForm,DoctorLoginForm
+from user.models import RegisterDoctor
 
 # Create your views here.
 
@@ -69,24 +70,27 @@ def logoutUser(request):
 def doctor_register(request):
     form = DoctorRegisterForm(request.POST or None) 
                                                                                                                           
-    if form.is_valid(): 
-        username = form.cleaned_data.get("username") 
-        password = form.cleaned_data.get("password")
+    if form.is_valid():
         name = form.cleaned_data.get("name")
         surname = form.cleaned_data.get("surname")
-        email = form.cleaned_data.get("email")
-        phone = form.cleaned_data.get("phone")
+        email = form.cleaned_data.get("email") 
+        password = form.cleaned_data.get("password")
+        phone_number = form.cleaned_data.get("phone_number")
+        address = form.cleaned_data.get("address")
+        gender = form.cleaned_data.get("gender")
         department = form.cleaned_data.get("department")
         degree = form.cleaned_data.get("degree")
-        gender = form.cleaned_data.get("gender")
-
+        birth_date = form.cleaned_data.get("birth_date")
         
-        new_user = User.objects.create_user(
-            username = username, password = password, first_name = name, last_name = surname,
-            email = email, phone = phone, department = department, degree = degree, gender = gender )
-
+        new_user = User.objects.create_user(username=email, email=email, password=password, first_name=name, last_name=surname)
         new_user.save()
-        login(request,new_user)
+        login(request, new_user)
+
+
+        new_doctor = RegisterDoctor.objects.create(
+        user=new_user,name=name, surname=surname, email=email, password=password, phone_number=phone_number,
+        address=address, gender=gender, department=department, degree=degree, birth_date=birth_date)
+        new_doctor.save()
         messages.success(request, "You Have Successfully Registered")  # Django Messages -->  https://docs.djangoproject.com/en/4.1/ref/contrib/messages/ 
         return redirect("home") 
 
@@ -106,7 +110,7 @@ def doctor_login(request):
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
         
-        user = authenticate(request, email=email, password=password)
+        user = authenticate(request, username=email, password=password)
         
         if user is None:
             messages.error(request, "Username or Password is Invalid")
