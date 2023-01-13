@@ -2,23 +2,23 @@
 {% load static %}
 {% block body %}
 
-<form action "#" method = "post">
+<form  method = "post">
     {% csrf_token %}
 <div class="form-group">
     <h4> Hastalığınızla İlgili Şikayetinizi Ayrıntılı Olarak Anlatır Mısınız ?<h4>
     <label for="exampleFormControlTextarea1"></label>
     <textarea class="form-control" placeholder="Şikayetinizi Giriniz..." id = "exampleFormControlTextarea1" maxlength="2000" rows="3" name = "complaint"></textarea>
     <br>
-    <button type="submit" class="btn btn-primary mb-2"> Şikayeti Dönüştür </button>
+    <button type="submit" class="btn btn-primary">Branş Belirle</button>
 </div>
 </form>
-
+<br>
 <table>
     <tr>
-        <th><h6>Kategori<h6></th>
+        <th><h5>Belirlenen Branş:<h5></th>
     </tr>
     <tr>
-        <td><h7>{{machine_translate}}<h7></td>
+        <td><h5 style="color:red">{{machine_translate}}<h5></td>
     <tr>
 </table> 
 <br><br><br><br><br>
@@ -26,6 +26,7 @@
 {% for doctor in doctors_of_categories %}
   <div class="row gutters-sm">
       <div class="col-md-12 mb-12">
+        <br>
           <div class="card">
               <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center" style = "float:left">
@@ -62,6 +63,15 @@
                       </div>
                       <hr>
                       <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Muayenehane Adresi:</h6>
+                        </div>
+                            <div class="col-sm-9 text-secondary">
+                            {{doctor.address}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
                           <div class="col-sm-3">
                               <h6 class="mb-0">Telefon Numarası:</h6>
                           </div>
@@ -69,6 +79,8 @@
                               {{doctor.phone_number}}
                           </div>
                       </div>
+                      <hr>
+                      <br><br>
                   </div>
               </div>
           </div>

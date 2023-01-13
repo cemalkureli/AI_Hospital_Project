@@ -153,5 +153,5 @@ EMAIL_HOST = 'smtp.office365.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'gp_project_deneme@hotmail.com'
-EMAIL_HOST_PASSWORD = 'wkvubglvcxmaazgm'
+EMAIL_HOST_PASSWORD = 'lkgunhilgxwpawov'
 EMAIL_ENCRYPTION='STARTTLS'

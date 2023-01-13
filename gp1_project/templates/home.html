@@ -2,6 +2,42 @@
 {% load static %}
 
 {% block body %}
+
+<style>
+  h3 {
+    text-align: center;
+    color:  red;
+  }
+
+  /* Add padding and hover effect to cards */
+  .card {
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  .card:hover {
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
+  }
+
+  /* Change background color of header */
+  .card-header {
+    background-color: #343a40;
+    color: white;
+  }
+
+  /* Change background color of collapse content */
+  .collapse {
+    background-color: #343a40;
+    color: white;
+  }
+
+  /* Change color of buttons */
+  .btn {
+    color: white;
+    background-color: #343a40;
+  }
+</style>
+
 <h3 style= "text-align: center; color:red;">AI HOSPITAL DOKTOR-HASTA ÖZEL MUAYENEHANE SİSTEMİ<h3>
   <hr>
 <br>
@@ -34,7 +70,7 @@
         </div>
         <div class="collapse" id="doctorLoginCollapse" style ="background-color:#343a40!important;">
           <div class="card-body">
-            <a href="{% url 'user:doctorlogin' %}">Doktor Giriş Sayfasına Git</a>
+            <a style = "color:red" href="{% url 'user:doctorlogin' %}">Doktor Giriş Sayfasına Git</a>
             <br>
           </div>
         </div>

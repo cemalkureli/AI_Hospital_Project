@@ -93,7 +93,6 @@ def complaints(request):
 
     if category_name:
         for doctor in RegisterDoctor.objects.filter(department=category_name):
-            print(doctor)
             doctors_of_categories.append(doctor)
 
     context = {
